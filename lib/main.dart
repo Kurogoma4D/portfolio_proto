@@ -19,13 +19,13 @@ class MyApp extends StatelessWidget {
 
 class _Props {
   static List<Color> colors = [
-    const Color.fromRGBO(44, 62, 80, 1),
+    const Color.fromRGBO(38, 166, 154, 1),
     const Color.fromRGBO(0, 0, 0, 0),
     const Color.fromRGBO(0, 131, 143, 1),
-    const Color.fromRGBO(38, 166, 154, 1),
+    const Color.fromRGBO(44, 62, 80, 1),
   ];
 
-  static List<String> titles = ["頭", "人", "技術", "連絡"];
+  static List<String> titles = ["作品", "人", "技術"];
 
   List<bool> isActive = List.generate(4, (i) => false);
   static String backgroundImage = "assets/images/backgroundImage.png";
@@ -62,7 +62,9 @@ class _HomePageState extends State<HomePage> {
             itemCount: 4,
             itemBuilder: (context, index) => _buildListItem(context, index),
             onPageChanged: (index) => setState(() {
-              _tabIndex = index;
+              if (index < 3) {
+                _tabIndex = index;
+              }
             }),
           ),
         ],
@@ -76,7 +78,7 @@ class _HomePageState extends State<HomePage> {
               duration: const Duration(milliseconds: 120),
               curve: Curves.easeIn);
         }),
-        items: List.generate(4, (index) {
+        items: List.generate(3, (index) {
           return BottomNavigationBarItem(
             backgroundColor: Color.fromRGBO(52, 73, 94, 1),
             icon: Center(),
@@ -99,12 +101,13 @@ class _HomePageState extends State<HomePage> {
   Widget _buildContent(int index) {
     switch (index) {
       case 0:
-        return Word();
+        return Center();
       case 1:
         return Profile();
       case 2:
         return Skills();
       case 3:
+        return Word();
       default:
         return Center();
     }

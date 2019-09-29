@@ -91,13 +91,12 @@ class Skills extends StatelessWidget {
           ),
           const Divider(thickness: 1, height: 1.6, color: Colors.white54),
           const SizedBox(height: 16),
-          GridView.count(
-            physics: NeverScrollableScrollPhysics(),
-            crossAxisCount: 5,
-            crossAxisSpacing: 12,
-            shrinkWrap: true,
+          Wrap(
+            spacing: 12,
             children: List.generate(
-                4, (index) => _buildGridItem(_Props.skills[index], context)),
+              _Props.skills.length,
+              (index) => _buildGridItem(_Props.skills[index], context),
+            ),
           ),
           const SizedBox(height: 42),
           RichText(
@@ -111,7 +110,7 @@ class Skills extends StatelessWidget {
           Wrap(
             spacing: 12,
             children: List.generate(
-              8,
+              _Props.poorSkills.length,
               (index) => Chip(
                 label: Text(_Props.poorSkills[index]),
                 backgroundColor: Color.fromRGBO(240, 240, 240, 1),
@@ -122,13 +121,12 @@ class Skills extends StatelessWidget {
           Text("デザイン", style: _Props.titleStyle),
           const Divider(thickness: 1, height: 1.6, color: Colors.white54),
           const SizedBox(height: 16),
-          GridView.count(
-            physics: NeverScrollableScrollPhysics(),
-            crossAxisCount: 5,
-            crossAxisSpacing: 12,
-            shrinkWrap: true,
-            children: List.generate(2,
-                (index) => _buildGridItem(_Props.designSkills[index], context)),
+          Wrap(
+            spacing: 12,
+            children: List.generate(
+              _Props.designSkills.length,
+              (index) => _buildGridItem(_Props.designSkills[index], context),
+            ),
           ),
         ],
       ),
@@ -137,10 +135,13 @@ class Skills extends StatelessWidget {
 
   Widget _buildGridItem(Map<String, String> skill, BuildContext context) {
     return GestureDetector(
-      child: Card(
-        child: Padding(
-          padding: const EdgeInsets.all(8),
-          child: Image.network(skill["url"]),
+      child: ConstrainedBox(
+        constraints: BoxConstraints(maxHeight: 80),
+        child: Card(
+          child: Padding(
+            padding: const EdgeInsets.all(8),
+            child: Image.network(skill["url"]),
+          ),
         ),
       ),
       onTap: () => _onPressed(skill, context),
