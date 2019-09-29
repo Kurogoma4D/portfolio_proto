@@ -4,7 +4,7 @@ class _Props {
   static TextStyle titleStyle = TextStyle(
     fontWeight: FontWeight.bold,
     fontSize: 24,
-    color: Color.fromRGBO(20, 20, 20, 1),
+    color: Colors.white,
   );
 
   static TextStyle skillNameStyle = TextStyle(
@@ -12,6 +12,10 @@ class _Props {
   );
   static TextStyle skillDescriptionStyle = TextStyle(
     fontSize: 12,
+  );
+  static TextStyle poorSkillStyle = TextStyle(
+    fontSize: 12,
+    color: Color.fromRGBO(33, 33, 33, 1),
   );
 
   static List<Map<String, String>> skills = [
@@ -62,7 +66,7 @@ class Skills extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text("プログラミング - そこそこできる", style: _Props.titleStyle),
-          const Divider(thickness: 2, height: 1.0),
+          const Divider(thickness: 1, height: 1.6, color: Colors.white54),
           const SizedBox(height: 16),
           GridView.count(
             physics: NeverScrollableScrollPhysics(),
@@ -74,22 +78,15 @@ class Skills extends StatelessWidget {
           ),
           const SizedBox(height: 42),
           Text("プログラミング - さわったことある", style: _Props.titleStyle),
-          const Divider(thickness: 2, height: 1.0),
+          const Divider(thickness: 1, height: 1.6, color: Colors.white54),
           const SizedBox(height: 16),
-          GridView.count(
-            physics: NeverScrollableScrollPhysics(),
-            crossAxisCount: 5,
-            crossAxisSpacing: 12,
-            childAspectRatio: 3 / 1,
-            shrinkWrap: true,
+          Wrap(
+            spacing: 12,
             children: List.generate(
               8,
-              (index) => Card(
-                child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                  child: Text(_Props.poorSkills[index]),
-                ),
+              (index) => Chip(
+                label: Text(_Props.poorSkills[index]),
+                backgroundColor: Color.fromRGBO(240, 240, 240, 1),
               ),
             ),
           ),

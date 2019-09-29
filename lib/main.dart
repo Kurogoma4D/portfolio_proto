@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:portfolio_proto/profile.dart';
-import 'package:portfolio_proto/slills.dart';
+import 'package:portfolio_proto/skills.dart';
 import 'package:portfolio_proto/word.dart';
 
 void main() => runApp(MyApp());
@@ -21,8 +21,8 @@ class _Props {
   static List<Color> colors = [
     const Color.fromRGBO(44, 62, 80, 1),
     const Color.fromRGBO(0, 0, 0, 0),
-    const Color.fromRGBO(255, 167, 38, 1),
-    const Color.fromRGBO(255, 112, 67, 1),
+    const Color.fromRGBO(0, 131, 143, 1),
+    const Color.fromRGBO(38, 166, 154, 1),
   ];
 
   static List<String> titles = ["頭", "人", "技術", "連絡"];
@@ -78,7 +78,7 @@ class _HomePageState extends State<HomePage> {
         }),
         items: List.generate(4, (index) {
           return BottomNavigationBarItem(
-            backgroundColor: Colors.black45,
+            backgroundColor: Color.fromRGBO(52, 73, 94, 1),
             icon: Center(),
             title: Text(_Props.titles[index]),
           );
