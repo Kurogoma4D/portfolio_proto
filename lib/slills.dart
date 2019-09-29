@@ -8,11 +8,48 @@ class _Props {
   );
 
   static TextStyle skillNameStyle = TextStyle(
-    fontSize: 16,
+    fontSize: 14,
   );
   static TextStyle skillDescriptionStyle = TextStyle(
     fontSize: 12,
   );
+
+  static List<Map<String, String>> skills = [
+    {
+      "name": "Flutter / Dart",
+      "url": "https://img.icons8.com/ios/100/000000/programming.png",
+      "description": "個人開発，業務開発で使用．勉強会にも参加するなど，個人的に注目度の高い技術．Redux使用経験あり．",
+    },
+    {
+      "name": "HTML / CSS / JS",
+      "url": "https://img.icons8.com/color/144/000000/javascript.png",
+      "description":
+          "個人開発，業務開発で使用．\n\n使用経験のあるツール：Gulp，yarn，Webpack，npm\n\n使用経験のあるライブラリ：enchant.js，three.js，React.js，AR.js，jQuery",
+    },
+    {
+      "name": "Python",
+      "url": "https://img.icons8.com/color/144/000000/python.png",
+      "description":
+          "3系：研究でのデータ処理・分析，業務開発で使用．\n2系：Cinema4Dのスクリプトとして使用．\n\n使用経験のあるツール・フレームワーク：Jupyter Notebook，IPython，Django",
+    },
+    {
+      "name": "C言語",
+      "url": "https://img.icons8.com/color/144/000000/c-programming.png",
+      "description":
+          "高専一年次より講義で使用．プログラミングの基礎，アルゴリズム，データ構造，組み込みプログラミング，ニューラルネットワークなど",
+    },
+  ];
+
+  static List<String> poorSkills = [
+    "C#",
+    "C++",
+    "Java",
+    "PHP",
+    "Golang",
+    "Objective-C",
+    "Processing",
+    "Arduino"
+  ];
 }
 
 class Skills extends StatelessWidget {
@@ -24,33 +61,63 @@ class Skills extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text("プログラミング", style: _Props.titleStyle),
+          Text("プログラミング - そこそこできる", style: _Props.titleStyle),
           const Divider(thickness: 2, height: 1.0),
           const SizedBox(height: 16),
           GridView.count(
             physics: NeverScrollableScrollPhysics(),
-            crossAxisCount: 3,
+            crossAxisCount: 5,
+            crossAxisSpacing: 12,
             shrinkWrap: true,
-            children: List.generate(3, (index) => _buildGridItem()),
+            children:
+                List.generate(4, (index) => _buildGridItem(index, context)),
+          ),
+          const SizedBox(height: 42),
+          Text("プログラミング - さわったことある", style: _Props.titleStyle),
+          const Divider(thickness: 2, height: 1.0),
+          const SizedBox(height: 16),
+          GridView.count(
+            physics: NeverScrollableScrollPhysics(),
+            crossAxisCount: 5,
+            crossAxisSpacing: 12,
+            childAspectRatio: 3 / 1,
+            shrinkWrap: true,
+            children: List.generate(
+              8,
+              (index) => Card(
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  child: Text(_Props.poorSkills[index]),
+                ),
+              ),
+            ),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildGridItem() {
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text("hoge", style: _Props.skillNameStyle),
-            const SizedBox(height: 8),
-            Text("huga", style: _Props.skillDescriptionStyle),
-          ],
+  Widget _buildGridItem(int index, BuildContext context) {
+    return GestureDetector(
+      child: Card(
+        child: Padding(
+          padding: const EdgeInsets.all(8),
+          child: Image.network(_Props.skills[index]["url"]),
         ),
       ),
+      onTap: () => _onPressed(index, context),
     );
+  }
+
+  void _onPressed(int index, BuildContext context) async {
+    await showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text(_Props.skills[index]["name"]),
+            content: Text(_Props.skills[index]["description"]),
+          );
+        });
   }
 }
