@@ -102,7 +102,7 @@ class _ProfileState extends State<Profile> {
           Text('Kurogoma4D', style: _nameStyle),
           const SizedBox(height: 24),
           Wrap(
-            spacing: 24,
+            spacing: 16,
             children: List.generate(
               _Props.links.length,
               (index) => _buildLinks(_Props.links[index]),
@@ -117,7 +117,7 @@ class _ProfileState extends State<Profile> {
     return GestureDetector(
       onTap: () => html.window.open(link["url"], link["name"]),
       child: Container(
-        constraints: BoxConstraints(maxHeight: 48),
+        constraints: BoxConstraints(maxHeight: 36),
         padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
           color: Color.fromRGBO(220, 220, 220, 1),
