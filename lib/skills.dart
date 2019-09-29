@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 class _Props {
   static TextStyle titleStyle = TextStyle(
     fontWeight: FontWeight.bold,
-    fontSize: 24,
+    fontSize: 20,
     color: Colors.white,
   );
   static TextStyle subtitleStyle = TextStyle(
     fontWeight: FontWeight.bold,
-    fontSize: 18,
+    fontSize: 16,
     color: Colors.white,
   );
   static TextStyle skillNameStyle = TextStyle(
@@ -83,9 +83,10 @@ class Skills extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
+          const SizedBox(height: 24),
           RichText(
             text: TextSpan(children: [
-              TextSpan(text: "プログラミング - ", style: _Props.titleStyle),
+              TextSpan(text: "プログラミング ", style: _Props.titleStyle),
               TextSpan(text: "そこそこできる", style: _Props.subtitleStyle),
             ]),
           ),
@@ -98,10 +99,10 @@ class Skills extends StatelessWidget {
               (index) => _buildGridItem(_Props.skills[index], context),
             ),
           ),
-          const SizedBox(height: 42),
+          const SizedBox(height: 32),
           RichText(
             text: TextSpan(children: [
-              TextSpan(text: "プログラミング - ", style: _Props.titleStyle),
+              TextSpan(text: "プログラミング ", style: _Props.titleStyle),
               TextSpan(text: "さわったことある", style: _Props.subtitleStyle),
             ]),
           ),
@@ -117,7 +118,7 @@ class Skills extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(height: 42),
+          const SizedBox(height: 32),
           Text("デザイン", style: _Props.titleStyle),
           const Divider(thickness: 1, height: 1.6, color: Colors.white54),
           const SizedBox(height: 16),
@@ -136,7 +137,7 @@ class Skills extends StatelessWidget {
   Widget _buildGridItem(Map<String, String> skill, BuildContext context) {
     return GestureDetector(
       child: ConstrainedBox(
-        constraints: BoxConstraints(maxHeight: 80),
+        constraints: BoxConstraints(maxHeight: 60),
         child: Card(
           child: Padding(
             padding: const EdgeInsets.all(8),

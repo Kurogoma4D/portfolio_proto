@@ -50,14 +50,14 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
   TextStyle _nameStyle = const TextStyle(
-    fontSize: 36,
+    fontSize: 28,
     height: 1,
     color: Colors.white,
     fontWeight: FontWeight.bold,
   );
 
   TextStyle _detailStyle = const TextStyle(
-    fontSize: 14,
+    fontSize: 12,
     color: Colors.white,
   );
 
