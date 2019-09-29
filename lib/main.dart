@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:portfolio_proto/works.dart';
 import 'package:portfolio_proto/profile.dart';
 import 'package:portfolio_proto/skills.dart';
 import 'package:portfolio_proto/word.dart';
@@ -104,7 +105,7 @@ class _HomePageState extends State<HomePage> {
   Widget _buildContent(int index) {
     switch (index) {
       case 0:
-        return Center();
+        return Works();
       case 1:
         return Profile();
       case 2:
