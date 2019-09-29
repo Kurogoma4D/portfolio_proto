@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
 
 class _Props {
   static List<Color> colors = [
-    const Color.fromRGBO(38, 166, 154, 1),
+    const Color.fromRGBO(52, 73, 94, 1),
     const Color.fromRGBO(0, 0, 0, 0),
     const Color.fromRGBO(0, 131, 143, 1),
     const Color.fromRGBO(44, 62, 80, 1),
@@ -72,17 +72,20 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _tabIndex,
         showUnselectedLabels: true,
+        backgroundColor: Color.fromRGBO(52, 73, 94, 1),
         onTap: (index) => setState(() {
           _tabIndex = index;
           _controller.animateToPage(index,
               duration: const Duration(milliseconds: 120),
               curve: Curves.easeIn);
         }),
-        items: List.generate(3, (index) {
+        items: List.generate(_Props.titles.length, (index) {
           return BottomNavigationBarItem(
-            backgroundColor: Color.fromRGBO(52, 73, 94, 1),
             icon: Center(),
-            title: Text(_Props.titles[index]),
+            title: Text(
+              _Props.titles[index],
+              style: TextStyle(color: Colors.white),
+            ),
           );
         }),
       ),

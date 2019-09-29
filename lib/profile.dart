@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:html' as html;
 
 class _Props {
   static String avatar =
@@ -8,6 +9,38 @@ class _Props {
       "2018/4~      木更津工業高等専門学校 制御・情報システム工学専攻";
   static String bio =
       "自主制作としてソフトウェア開発をしたり、3DCGで静止画を制作したりしている。高専生活の過程でX-R技術やデザインに興味を持ち、メディアデザインを対象とする研究室に所属する。現在はAR技術を用いたスマートフォンアプリとUser Interfaceに関する研究を続けている。\n趣味はPCゲーム、ポータブルオーディオなど。";
+  static List<Map<String, String>> links = [
+    {
+      "name": "Qiita",
+      "url": "https://qiita.com/Kurogoma4D",
+      "image":
+          "https://img.icons8.com/material-rounded/96/000000/twitter-squared.png",
+    },
+    {
+      "name": "GitHub",
+      "url": "https://github.com/Kurogoma4D/",
+      "image":
+          "https://img.icons8.com/material-rounded/96/000000/twitter-squared.png",
+    },
+    {
+      "name": "note",
+      "url": "https://note.mu/krgm4d",
+      "image":
+          "https://img.icons8.com/material-rounded/96/000000/twitter-squared.png",
+    },
+    {
+      "name": "3DCG",
+      "url": "https://kurogoma-show.myportfolio.com/work",
+      "image":
+          "https://img.icons8.com/material-rounded/96/000000/twitter-squared.png",
+    },
+    {
+      "name": "Twitter",
+      "url": "https://twitter.com/Krgm4D",
+      "image":
+          "https://img.icons8.com/material-rounded/96/000000/twitter-squared.png",
+    },
+  ];
 }
 
 class Profile extends StatefulWidget {
@@ -67,7 +100,30 @@ class _ProfileState extends State<Profile> {
           ),
           const SizedBox(height: 32),
           Text('Kurogoma4D', style: _nameStyle),
+          const SizedBox(height: 24),
+          Wrap(
+            spacing: 24,
+            children: List.generate(
+              _Props.links.length,
+              (index) => _buildLinks(_Props.links[index]),
+            ),
+          ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildLinks(Map<String, String> link) {
+    return GestureDetector(
+      onTap: () => html.window.open(link["url"], link["name"]),
+      child: Container(
+        constraints: BoxConstraints(maxHeight: 48),
+        padding: const EdgeInsets.all(8),
+        decoration: BoxDecoration(
+          color: Color.fromRGBO(220, 220, 220, 1),
+          shape: BoxShape.circle,
+        ),
+        child: Image.network(link["image"]),
       ),
     );
   }
